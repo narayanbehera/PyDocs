@@ -1,0 +1,311 @@
+Python Builtin functions:
+--------------------------
+modules:
+--------
+platform
+   .platform()-->os name
+os
+  .path
+  .pwd
+  .chdir()
+  .unlink()
+  .remove()
+sys
+   .argv --> command line argument
+time
+   .strftime()
+re
+    .split()- This makes use of a regex pattern to split a string into a list
+    .sub()- This looks for all substrings where the regex pattern matches, and replaces them with a different string
+    .subn()- Like sub(), this returns the new string and the number of replacements made
+pickle
+   dump()--> pickling
+   load()-->unpickling
+from __future__ import division --> for getting floating point division value(1/2=0.5)
+from collections import Counter --> takes a list and returns a dictionary with element and occurance
+itertools
+       .permutations()---> returns a iterator object of possible no of permutations
+
+functions:
+-----------
+del
+min
+max
+len
+range()
+raw_input("Enter string")
+raise --> raise ur own exception handelling 
+assert
+enumerate([])--> returns enmerate object which return the index and value of the list
+
+with--> will take care of closing the Filehandelling (context manager)
+
+lambda--> single line function 
+
+zip-->Return a list of tuples, where each tuple contains the i-th element
+       from each of the argument sequences.
+zip([5,2,3],[2,3,4],[9,3,4,5]) -> [(5, 2, 9), (2, 3, 3), (3, 4, 4)]
+
+Argument to func:
+-----------------
+*arg--> func accept as list
+**arg-->func accept as dict(i.e. with key value pair)
+String:
+
+set:(doesnot contain any duplicate values)
+----
+set cannot be called in index wise
+s=set([])
+a.add-->add an elements,it will not add the element if the set contains any element
+s.clear-->remove all the elements from the set
+s.copy-->return a shallow copy of a set
+s.diffrenece()-->diffrence of two or more sets as a new set
+                (i.e. all elemts that are inthis set but not the others)
+s.difference_update()--Remove all elements of another set from this set
+s.discard()-->Remove an element from a set if it is a member
+s.intersection()-->return the intersection of two or more sets a s new set
+s.intersection_update-->update a set with intersection of itself and other
+
+
+
+List:
+-----
+l=[]
+l.append()-->append an object to end
+l.count(value)-->return integer-->return the no of occurance of the value on the list
+l.extend(iterable)-->extend the list by appending elements from the iterable
+l.index(value,[start,[stop]])--> return integer-->returns the first index of the value
+l.insert(index,object)-->insert an object before the index
+l.pop([index])-->return item ---> remove and return the item from that idex(default is last element)
+l.remove(value)--> remove the first occurance of the value
+l.reverse()-->reverse of the list
+l.sort(cmp=None,key=None,reverse=False) 
+       if key=str--> sorting with string comparision
+          default is int
+
+list1=l-->both list and l will refer to same object 
+list=l[:]--> will create a differnt list object with content of 'l'
+l[::]-->print the completelist with single hop(default)
+l[::-1]--> print the complete list in reverse
+l[::2]-->print the list with skipiing alternate index
+l[::3]-->print the list with skipping 2 index
+
+Dictionary:(distionary doesnot containe any duplicate keys)
+-----------
+Dictionary keys should have immutable objects. 
+d={}
+d.items -->list of d's (key,value) pairs as 2-tuples
+d.has_key(k)->True id d has a key 'k', else False
+d.iteritems()--> an iterator over the (key,value) items of d
+d.iterkeys()--> an iterator over the keys of d
+d.itervalues()-->an itertor over values of d
+d.keys()-->list of keys of d
+d.values()-->list of values of d
+d.pop(k[,d]--> remove specified key and return the corresponding value.
+d.popitem()-->remove (k,v) and return some (key,value) pair as 2-tuple
+d.setdefault(k,[,d])-->set d[k]='d' if not k in d
+
+string:
+-------
+.startwith('')---> return true if the string start with this string.	
+center a_string.center(w) Returns a string centered in a field of size ??
+count a_string.count(item) Returns the number of occurrences of item
+in the string
+ljust a_string.ljust(w) Returns a string left-justified in a field of size
+??
+lower a_string.lower() Returns a string in all lowercase
+rjust a_string.rjust(w) Returns a string right-justified in a field of
+size ??
+find a_string.find(item) Returns the index of the first occurrence of
+item
+split a_string.split(s_char) Splits a string into substrings at s_char
+Filter:
+-------
+items = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x**2, items))
+def multiply(x):
+    return (x*x)
+def add(x):
+    return (x+x)
+funcs = [multiply, add]
+for i in range(5):
+    value = list(map(lambda x: x(i), funcs))
+-----------------------------------------------
+		number_list = range(-5, 5)
+		less_than_zero = list(filter(lambda x: x < 0, number_list))
+		print(less_than_zero)
+--------------------------------------------------------
+from functools import reduce
+product = reduce((lambda x, y: x * y), [1, 2, 3, 4])
+----------------------------------------------------
+
+List Comprehensive:
+-------------------
+a=range(0,100)
+
+print [2*i if i%2 != 0 else i for i in a]
+print [2*i if i%2 != 0 else 3*i if i%3 !=0 else i for i in a]
+
+[d.append(j) for i in word_list for j in i if j not in d] --> removing duplicated in a list of list
+
+Generator Expression:
+---------------------
+mylist=[1,2,3,4,5]
+a=(i**2 for i in mylist)
+print a --> will print referenace to that generator
+list(a)--> conver the generator into list
+
+Decorator:
+----------
+Decorator execute before and after your function code
+@a_new_decorator
+def a_function_requiring_decoration:
+
+[a_function_requiring_decoration = a_new_decorator(a_function_requiring_decoration)]
+
+General Algo:
+------------
+1. Simple programs of dictionary, occurrence of letter in word - done
+Solution:
+	     for i in a:
+		if d.has_key(i):
+		   d[i] += 1
+		else:
+		   d[i]=1
+
+2. find second largest
+Solution:
+	   print sorted([x for x in l if l.count(x) == 1])[-2]
+
+3. find the unmatched pattern in file.            - Done  
+Solution:
+	  s="87 foo 87 bar"
+	  print re.compile(r"87\s*").sub("",s)
+
+4. Compare two large file. (Binary search)        - Done
+Solution:
+     with open('b') as b:
+  	blines = set(b)
+	with open('a') as a:
+           with open('result', 'w') as result:
+    		for line in a:
+		      if line not in blines:
+	      		  result.write(line)	
+
+5. Find valid IP in log file                      - Done
+Solution:
+  0-255.0-255.0-255.0-255
+  250-255|200-249|0-199
+  \b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}
+  (?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b
+
+6. Find specific pattern in logfile               - 
+
+7. Maximum length of consecutive number in list   - Done    
+Solution:
+   hint:itertools.groupby()
+    for x in itertools.groupby(a):
+	d[x[0]]=len(list(x[1]))
+    sorted (d.items(),key=lambda x: x[1])[-1][1]
+
+8. Merge two sorted list                          - Done
+Solution:
+   l3=sorted(l1+l2)
+   for i in l2:
+       if not l1.count(i) == 1:
+           l2.append(i)
+
+ 
+9. Duplicate in list
+Solutions:
+      d={}
+      for i in s:
+	if not d.has_key(i):
+		d[i]='1'
+      print d.keys()
+
+finding duplicates in a list:
+Solution:
+        duplicate=[]   
+ 	if list.count(value) > 1:
+            if value not in duplicates:
+            	duplicates.append(value)
+   
+   duplicate= set([x for x in list if list.count(x) > 1])
+
+l=list(set(l))--> converth that list into set and again convert it back to list
+
+10. Return tuple with minimum difference in a list
+Solution:
+     l=len(a)
+     
+diff=max(a)
+     
+for i in range(l-1):
+
+	   for j in range(i+1,l)
+        
+		if a[i] - a[j] < diff:
+
+            		diff= a[i] - a[j]
+	    
+            print ( a[i], a[j])
+                             
+16. Anagram
+Solution:
+      s1=listen
+      s2=silent
+      if len(S1) != len(s2):
+          print "its not a Anagram"
+      for i in s1:
+          if i not in s2:
+             print "not Anagram"
+             break
+20. Search string in a large file
+Solution:
+     with open('C:\\Users\\behern1\\Desktop\\Virtualization_Cert\\VASA\\Python_builtin_functions.txt') as fh:
+	for i in fh:
+		obj=re.search(r'(\d+?).+?Anagram',i)
+		if obj:
+			print obj.group(1)
+
+21. Find the Equilibrium index  of an array:
+    arr=[-2,3,-4,4,43,-93,32,17]
+    left=0
+    right=0
+    for i in arr:
+    	
+9. Sorting of element using one aray              
+11. Top view of a tree
+12. quicksort
+13. Timsort
+ 
+17. Copy 1 stack to another
+18. Covert string to integer
+19. Put less in left and more in right in a array
+
+
+
+1.sort dictinary :
+  sort(d.keys(),keys=lambda x: x[0]) #Sort as per key
+  sort(d.items(),keys=lamda x:x[1],x[0]) #sort as per value
+
+2.sort string:
+   sorted(list)  # sort with respect to integer
+   sorted(list,key=str) # sort with respect to string
+
+10. Order Dict:
+     From collection import OrderedDict
+     od=OrderedDict
+
+
+11. def Sort(sub_li): 
+    # reverse = None (Sorts in Ascending order) 
+    # key is set to sort using second element of  
+    # sublist lambda has been used 
+    sub_li.sort(key = lambda x: x[1]) 
+    return sub_li  
+# Driver Code 
+sub_li =[['rishav', 10], ['akash', 5], ['ram', 20], ['gaurav', 15]] 
+print(Sort(sub_li)) 
+     
